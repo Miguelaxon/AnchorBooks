@@ -2,10 +2,7 @@ package com.example.anchorbooks.model
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.anchorbooks.local.Books
-import com.example.anchorbooks.local.BooksDao
-import com.example.anchorbooks.local.ClassBooks
-import com.example.anchorbooks.local.ClassDetail
+import com.example.anchorbooks.local.*
 import com.example.anchorbooks.remote.ApiClient
 
 class Repository (private val booksDao: BooksDao) {
@@ -34,11 +31,30 @@ class Repository (private val booksDao: BooksDao) {
         }
     }
 
-    fun converterDetail(list: List<String>, id: Int): List<ClassDetail>{
+    fun converterDetail(list: List<BooksDetail>, id: Int): List<ClassDetail>{
         val listDetail: MutableList<ClassDetail> = mutableListOf()
         list.map {
-            //listDetail.add(ClassDetail(id = id, ))
+            listDetail.add(ClassDetail(id = id, author = it.author, country = it.country,
+            imageLink = it.imageLink, language = it.language, link = it.link, pages = it.pages,
+            title = it.title, year = it.year, price = it.price, lastPrice = it.lastPrice,
+                delivery = it.delivery))
         }
         return listDetail
     }
+
+    suspend fun getFetchDetailCotoutines(id: Int){
+        try {
+            val response = ApiClient.getApiClient().getFetchBooksDetail(id)
+            when (response.isSuccessful){
+                true -> response.body()?.let {
+                    booksDao.insertAllBooksDetail(converterDetail(it.list, id))
+                }
+                false -> Log.d("ERROR", "${response.code()}: ${response.errorBody()}")
+            }
+        } catch (t: Throwable){
+            Log.d("Error Coroutine", t.message.toString())
+        }
+    }
+
+    fun getBookDetail(id: Int): LiveData<List<ClassDetail>> = booksDao.getBooksDetail(id)
 }

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [ClassBooks::class, ClassDetail::class], version = 1)
 abstract class BaseDatos: RoomDatabase() {
-    abstract fun getFamilyDAO(): BooksDao
+    abstract fun getBooksDAO(): BooksDao
     companion object{
         @Volatile
         private var INSTANCE: BaseDatos? = null
