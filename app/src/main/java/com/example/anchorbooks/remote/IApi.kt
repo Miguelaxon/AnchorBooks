@@ -5,9 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface IApi {
-    @GET("books")
+    @GET("anchorBooks/books")
     suspend fun getFetchBooks(): Response<AnchorBooksList>
 
-    @GET("bookDetail/{id}")
+    @GET("anchorBooks/bookDetail/{id}")
     suspend fun getFetchBooksDetail(@Path("id") id: Int): Response<AnchorBooksDetail>
 }

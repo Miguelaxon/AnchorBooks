@@ -1,6 +1,7 @@
 package com.example.anchorbooks.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,13 @@ class FirstFragment : Fragment() {
         viewModel.listAllBooks.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.update(it)
+            }
+        })
+
+        adapter.selectedBooks().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                viewModel.selectedBookDetail(it.id)
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             }
         })
     }

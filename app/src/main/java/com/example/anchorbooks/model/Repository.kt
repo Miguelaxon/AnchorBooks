@@ -27,7 +27,7 @@ class Repository (private val booksDao: BooksDao) {
                 false -> Log.d("ERROR", "${response.code()}: ${response.errorBody()}")
             }
         } catch (t: Throwable){
-            Log.d("Error Coroutine", t.message.toString())
+            Log.d("Error Books Coroutine", t.message.toString())
         }
     }
 
