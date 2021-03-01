@@ -31,14 +31,14 @@ class Repository (private val booksDao: BooksDao) {
         }
     }
 
-    fun converterDetail(list: List<BooksDetail>, id: Int): List<ClassDetail>{
+    fun converterDetail(id: Int, author: String, country: String, imageLink: String,
+                        language: String, link: String, pages: Int, title: String, year: Int,
+                        price: Int, lastPrice: Int, delivery: Boolean): List<ClassDetail>{
         val listDetail: MutableList<ClassDetail> = mutableListOf()
-        list.map {
-            listDetail.add(ClassDetail(id = id, author = it.author, country = it.country,
-            imageLink = it.imageLink, language = it.language, link = it.link, pages = it.pages,
-            title = it.title, year = it.year, price = it.price, lastPrice = it.lastPrice,
-                delivery = it.delivery))
-        }
+            listDetail.add(ClassDetail(id = id, author = author, country = country,
+                    imageLink = imageLink, language = language, link = link, pages = pages,
+                    title = title, year = year, price = price, lastPrice = lastPrice,
+                    delivery = delivery))
         return listDetail
     }
 
@@ -47,12 +47,14 @@ class Repository (private val booksDao: BooksDao) {
             val response = ApiClient.getApiClient().getFetchBooksDetail(id)
             when (response.isSuccessful){
                 true -> response.body()?.let {
-                    booksDao.insertAllBooksDetail(converterDetail(it.list, id))
+                    booksDao.insertAllBooksDetail(converterDetail(id, it.author, it.country,
+                            it.imageLink, it.language, it.link, it.pages, it.title, it.year,
+                            it.price, it.lastPrice, it.delivery))
                 }
                 false -> Log.d("ERROR", "${response.code()}: ${response.errorBody()}")
             }
         } catch (t: Throwable){
-            Log.d("Error Coroutine", t.message.toString())
+            Log.d("Error Detail Coroutine", t.message.toString())
         }
     }
 
