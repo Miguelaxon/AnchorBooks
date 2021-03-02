@@ -6,6 +6,8 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
+import android.webkit.WebViewClient
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
@@ -38,6 +40,11 @@ class AdapterDetail: RecyclerView.Adapter<AdapterDetail.DetailBookViewHolder>() 
             binding.tvPages.text = classDetail.pages.toString()
             Glide.with(binding.ivBookDetail).load(classDetail.imageLink).into(binding.ivBookDetail)
             binding.ivDelivery.isVisible = classDetail.delivery
+            binding.wvWiki.loadUrl(classDetail.link)
+            binding.wvWiki.webViewClient = object : WebViewClient(){}
+            val setting: WebSettings = binding.wvWiki.settings
+            setting.javaScriptEnabled = true
+            binding.wvWiki.loadUrl(classDetail.link)
             itemView.setOnClickListener(this)
         }
 

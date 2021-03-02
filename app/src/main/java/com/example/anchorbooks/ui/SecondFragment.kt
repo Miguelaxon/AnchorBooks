@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.anchorbooks.R
 import com.example.anchorbooks.databinding.FragmentSecondBinding
 import com.example.anchorbooks.ui.adapter.AdapterDetail
 import com.example.anchorbooks.viewmodel.ViewModel
@@ -19,8 +20,6 @@ import com.example.anchorbooks.viewmodel.ViewModel
 class SecondFragment : Fragment() {
     private lateinit var binding: FragmentSecondBinding
     private val viewModel: ViewModel by activityViewModels()
-    var title: String = ""
-    private var price: Int = 0
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -43,10 +42,12 @@ class SecondFragment : Fragment() {
         })
 
         binding.btnBuy.setOnClickListener {
+            val title: String = ""
+            val idM: Int = 0
             val intent = Intent(Intent.ACTION_SENDTO).apply {
-                data = Uri.parse("mailto:hideki.ahumada@gmail.com")
-                putExtra(Intent.EXTRA_SUBJECT, "Buy book, $title")
-                putExtra(Intent.EXTRA_TEXT, "Hi, this book have a price of $price.")
+                data = Uri.parse("mailto:ventas@anchorBooks.cl")
+                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.mailSubject, title, idM))
+                putExtra(Intent.EXTRA_TEXT, getString(R.string.mailText, title, idM))
             }
             startActivity(intent)
         }
