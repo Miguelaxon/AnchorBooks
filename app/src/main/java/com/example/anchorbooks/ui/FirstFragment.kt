@@ -40,8 +40,11 @@ class FirstFragment : Fragment() {
 
         adapter.selectedBooks().observe(viewLifecycleOwner, Observer {
             it?.let {
+                val bundle = Bundle()
+                bundle.putString("id", it.id.toString())
+                bundle.putString("title", it.title)
                 viewModel.selectedBookDetail(it.id)
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
             }
         })
     }

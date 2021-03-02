@@ -1,5 +1,6 @@
 package com.example.anchorbooks.ui.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
@@ -63,4 +65,5 @@ class AdapterDetail: RecyclerView.Adapter<AdapterDetail.DetailBookViewHolder>() 
     }
 
     override fun getItemCount(): Int = listDetail.size
+
 }

@@ -3,12 +3,10 @@ package com.example.anchorbooks.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,6 +18,8 @@ import com.example.anchorbooks.viewmodel.ViewModel
 class SecondFragment : Fragment() {
     private lateinit var binding: FragmentSecondBinding
     private val viewModel: ViewModel by activityViewModels()
+    var idM: String = ""
+    var title: String = ""
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +27,14 @@ class SecondFragment : Fragment() {
     ): View? {
         binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            idM = requireArguments().getString("id", "")
+            title = requireArguments().getString("title", "")
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,9 +49,7 @@ class SecondFragment : Fragment() {
             }
         })
 
-        binding.btnBuy.setOnClickListener {
-            val title: String = ""
-            val idM: Int = 0
+        binding.fabBuy.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:ventas@anchorBooks.cl")
                 putExtra(Intent.EXTRA_SUBJECT, getString(R.string.mailSubject, title, idM))
