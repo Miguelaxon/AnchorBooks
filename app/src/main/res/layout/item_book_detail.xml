@@ -23,38 +23,78 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
             android:textSize="24sp"
             android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/tvAuthorDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/author" />
 
         <TextView
             android:id="@+id/tvAuthorD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvLastPriceDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/last_price" />
+
+        <TextView
+            android:id="@+id/tvLastPriceD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="0dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvPriceDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/price" />
 
         <TextView
             android:id="@+id/tvPriceD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="0dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvPagesDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/pages" />
 
         <TextView
             android:id="@+id/tvPages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="0dp"
+            android:textSize="18sp" />
 
-        <WebView
-            android:id="@+id/wvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp" />
     </LinearLayout>
 </ScrollView>

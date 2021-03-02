@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
     companion object{
-        private const val URL_BASE = "https://my-json-server.typicode.com/Himuravidal/"
+        private const val URL_BASE = "https://my-json-server.typicode.com/Himuravidal/anchorBooks/"
         fun getApiClient(): IApi {
             val mRetrofit = Retrofit.Builder().baseUrl(URL_BASE)
                 .addConverterFactory(GsonConverterFactory.create()).build()

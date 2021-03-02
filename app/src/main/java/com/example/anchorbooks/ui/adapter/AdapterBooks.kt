@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.Resource
+import com.example.anchorbooks.R
 import com.example.anchorbooks.databinding.ItemBooksBinding
 import com.example.anchorbooks.local.ClassBooks
 

@@ -17,42 +17,69 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:textSize="30sp"
+        android:layout_marginEnd="10dp"
+        android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivBooks"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/ivBooks"
+        app:layout_constraintTop_toBottomOf="@+id/tvAuthorT" />
+
+    <TextView
+        android:id="@+id/tvCountry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/ivBooks"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountryT" />
+
+    <TextView
+        android:id="@+id/tvLanguage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/ivBooks"
+        app:layout_constraintTop_toBottomOf="@+id/tvLanguageT" />
+
+    <TextView
+        android:id="@+id/tvAuthorT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:textSize="18sp"
+        android:text="@string/author"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/ivBooks"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <TextView
-        android:id="@+id/tvCountry"
+        android:id="@+id/tvCountryT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="35dp"
-        android:textSize="18sp"
+        android:text="@string/country"
         app:layout_constraintStart_toEndOf="@+id/ivBooks"
         app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
 
     <TextView
-        android:id="@+id/tvLanguage"
+        android:id="@+id/tvLanguageT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="35dp"
-        android:textSize="18sp"
+        android:text="@string/language"
         app:layout_constraintStart_toEndOf="@+id/ivBooks"
         app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
 </androidx.constraintlayout.widget.ConstraintLayout>

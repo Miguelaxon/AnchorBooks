@@ -1,9 +1,12 @@
 package com.example.anchorbooks.ui.adapter
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -25,20 +28,19 @@ class AdapterDetail: RecyclerView.Adapter<AdapterDetail.DetailBookViewHolder>() 
     }
 
     inner class DetailBookViewHolder(private val binding: ItemBookDetailBinding):
-        RecyclerView.ViewHolder(binding.root), View.OnLongClickListener{
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener{
         fun bind(classDetail: ClassDetail){
             binding.tvTitleD.text = classDetail.title.toUpperCase()
             binding.tvAuthorD.text = classDetail.author
+            binding.tvLastPriceD.text = classDetail.lastPrice.toString()
             binding.tvPriceD.text = classDetail.price.toString()
             binding.tvPages.text = classDetail.pages.toString()
-            binding.wvDescription.loadUrl(classDetail.link)
             Glide.with(binding.ivBookDetail).load(classDetail.imageLink).into(binding.ivBookDetail)
-            itemView.setOnLongClickListener(this)
+            itemView.setOnClickListener(this)
         }
 
-        override fun onLongClick(v: View?): Boolean {
+        override fun onClick(v: View?) {
             selectedDetail.value = listDetail[adapterPosition]
-            return true
         }
     }
 
