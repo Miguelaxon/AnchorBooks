@@ -20,6 +20,7 @@ class SecondFragment : Fragment() {
     private lateinit var binding: FragmentSecondBinding
     private val viewModel: ViewModel by activityViewModels()
     var title: String = ""
+    var price: Int = 0
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -39,20 +40,15 @@ class SecondFragment : Fragment() {
             it?.let {
                 adapter.update(it)
                 title = it[0].title
+                price = it[0].price
             }
         })
-/*
-        adapter.selectedBookDetail().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                viewModel.selectedBookDetail(it.id)
-            }
-        })*/
 
         binding.btnBuy.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:hideki.ahumada@gmail.com")
                 putExtra(Intent.EXTRA_SUBJECT, "Buy book, $title")
-                putExtra(Intent.EXTRA_TEXT, "Hi, i want buy this book.")
+                putExtra(Intent.EXTRA_TEXT, "Hi, this book have a price of $price.")
             }
             startActivity(intent)
         }
