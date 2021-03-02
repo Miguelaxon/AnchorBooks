@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,7 @@ class AdapterDetail: RecyclerView.Adapter<AdapterDetail.DetailBookViewHolder>() 
             binding.tvPriceD.text = classDetail.price.toString()
             binding.tvPages.text = classDetail.pages.toString()
             Glide.with(binding.ivBookDetail).load(classDetail.imageLink).into(binding.ivBookDetail)
+            binding.ivDelivery.isVisible = classDetail.delivery
             itemView.setOnClickListener(this)
         }
 

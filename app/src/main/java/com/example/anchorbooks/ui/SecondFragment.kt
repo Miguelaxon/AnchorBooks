@@ -20,7 +20,7 @@ class SecondFragment : Fragment() {
     private lateinit var binding: FragmentSecondBinding
     private val viewModel: ViewModel by activityViewModels()
     var title: String = ""
-    var price: Int = 0
+    private var price: Int = 0
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +39,6 @@ class SecondFragment : Fragment() {
         viewModel.returnBookDetail().observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.update(it)
-                title = it[0].title
-                price = it[0].price
             }
         })
 
