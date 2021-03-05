@@ -13,6 +13,7 @@
     <string name="last_price">Last Price:</string>
     <string name="pages">Pages:</string>
     <string name="buy">BUY</string>
+    <string name="mail">ventas@anchorBooks.cl</string>
     <string name="mailSubject">Consulta por libro %1$s id %2$s</string>
     <string name="mailText">Hola \n\n Vi el libro %1$s de código %2$s y me gustaría que me
         contactaran a este correo o al \n siguiente número _________. \n\n Quedo atento.</string>

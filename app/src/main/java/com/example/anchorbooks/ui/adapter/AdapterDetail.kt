@@ -25,8 +25,6 @@ class AdapterDetail: RecyclerView.Adapter<AdapterDetail.DetailBookViewHolder>() 
     private var listDetail = listOf<ClassDetail>()
     private val selectedDetail = MutableLiveData<ClassDetail>()
 
-    fun selectedBookDetail(): LiveData<ClassDetail> = selectedDetail
-
     fun update(list: List<ClassDetail>){
         listDetail = list
         notifyDataSetChanged()

@@ -1,11 +1,13 @@
 package com.example.anchorbooks.ui
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -15,7 +17,8 @@ import com.example.anchorbooks.databinding.FragmentSecondBinding
 import com.example.anchorbooks.ui.adapter.AdapterDetail
 import com.example.anchorbooks.viewmodel.ViewModel
 
-class SecondFragment : Fragment() {
+
+open class SecondFragment : Fragment() {
     private lateinit var binding: FragmentSecondBinding
     private val viewModel: ViewModel by activityViewModels()
     var idM: String = ""
@@ -50,12 +53,27 @@ class SecondFragment : Fragment() {
         })
 
         binding.fabBuy.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SENDTO).apply {
-                data = Uri.parse("mailto:ventas@anchorBooks.cl")
-                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.mailSubject, title, idM))
-                putExtra(Intent.EXTRA_TEXT, getString(R.string.mailText, title, idM))
-            }
-            startActivity(intent)
+            sendEmail()
+        }
+
+    }
+
+    fun sendEmail() {
+        val para = arrayOf("ventas@anchorBooks.cl")
+        val copia = arrayOf("")
+        val emailIntent = Intent(Intent.ACTION_SEND)
+        emailIntent.data = Uri.parse("mailto:")
+        emailIntent.type = "text/plain"
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, para)
+        emailIntent.putExtra(Intent.EXTRA_CC, copia)
+        // Esto podrás modificarlo si quieres, el asunto y el cuerpo del mensaje
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.mailSubject, title, idM))
+        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.mailText, title, idM))
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
+        } catch (ex: ActivityNotFoundException) {
+            Toast.makeText(context,
+                    "No tienes clientes de email instalados.", Toast.LENGTH_SHORT).show()
         }
     }
 }
